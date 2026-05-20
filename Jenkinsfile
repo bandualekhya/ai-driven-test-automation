@@ -19,7 +19,8 @@ pipeline {
             }
         }
     }
-        post {
+
+    post {
         always {
             publishHTML([
                 reportDir: 'playwright-report',
@@ -31,3 +32,4 @@ pipeline {
             ])
         }
     }
+}
