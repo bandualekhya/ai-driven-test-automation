@@ -8,25 +8,21 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                bat 'npm ci'
-                bat 'npx playwright install --with-deps chromium'
+                sh 'npm ci'
+                sh 'npx playwright install --with-deps chromium'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test'
+                sh 'npx playwright test'
             }
         }
     }
 
     post {
         always {
-            publishHTML([
-                reportDir: 'playwright-report',
-                reportFiles: 'index.html',
-                reportName: 'Playwright Report'
-            ])
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
         }
     }
 }
