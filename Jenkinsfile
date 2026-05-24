@@ -14,7 +14,16 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh 'npm ci'
-                sh 'npx playwright install --with-deps chromium'
+                sh '''
+                    # Install system dependencies required by Playwright Chromium
+                    apt-get update && apt-get install -y \
+                        libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 \
+                        libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 \
+                        libxfixes3 libxrandr2 libgbm1 libpango-1.0-0 \
+                        libcairo2 libasound2 libatspi2.0-0 libxshmfence1 \
+                        || true
+                '''
+                sh 'npx playwright install chromium'
             }
         }
 
