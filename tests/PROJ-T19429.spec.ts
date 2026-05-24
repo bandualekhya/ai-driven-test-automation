@@ -1,10 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 /**
+
  * Test Case: PROJ-T19429
  * Title: SauceDemo - Login and Add to Cart E2E
  * Objective: Verify user can login, add products to cart, and complete checkout on SauceDemo
  * Precondition: Browser is open. User has valid credentials: standard_user / secret_sauce
+ 
  */
 test.describe('WFMD-T19429: SauceDemo - Login and Add to Cart E2E', () => {
 
